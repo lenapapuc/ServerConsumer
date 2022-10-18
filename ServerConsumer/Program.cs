@@ -26,7 +26,6 @@ namespace KitchenPr
                 var.Start();
             }
             httpServer.Start();
-            
             while (Program._keepRunning)
             {
             }

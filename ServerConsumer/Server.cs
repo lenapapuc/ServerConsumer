@@ -4,16 +4,21 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using static KitchenPr.Client;
 
 namespace KitchenPr
 {
     public class Server
     {
-        public static Queue<string> JsonObjects = new Queue<string>();
+       // public static Queue<string> Data;
         public int Port = 8090;
 
         private HttpListener _listener;
-
+       // private Queue<string> Queue = new Queue<string>();
         public void Start()
         {
             _listener = new HttpListener();
@@ -55,10 +60,12 @@ namespace KitchenPr
                     Console.WriteLine("Client data content length {0}", request.ContentLength64);
 
                     Console.WriteLine("Start of data:");
-                    string s = reader.ReadToEnd();
-                    JsonObjects.Enqueue(s);
-                   
-                    Console.WriteLine(s);
+                    string st = reader.ReadToEnd();
+                    string s = st;
+                    Console.WriteLine(st);
+                    if (st.Length != null || st.Length != 0)
+                    Queue.Enqueue(st);
+                    //Console.WriteLine(st);
                     Console.WriteLine("End of data:");
                     reader.Close();
                     body.Close();
